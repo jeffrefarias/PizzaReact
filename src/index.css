@@ -1,0 +1,41 @@
+/* body {
+    height: 100vh;
+  } */
+
+  /* Navbar */
+
+  .nav-link {
+    font-size: 1.5em; 
+    margin-right: 30px; 
+    color: white;
+  }
+
+  .nav-link:hover {
+    color: white !important;
+  }
+  
+  .navbar{
+    background-color: rgb(56, 145, 228) !important;
+  }
+
+  .pizzaIcon{
+    margin-left: 2em;
+    height: 3em;
+    width: 3em;
+    margin-right: -30px;
+  }
+
+  .cartIcon{
+    margin-left: 1em;
+    height: 2.5em;
+    width: 2.5em;
+    margin-right: -30px;
+  }
+
+  .totalCart{
+    margin-right: 5em;  
+  }
+
+  .totalCart p{
+    font-size: 1.5em;
+  }
