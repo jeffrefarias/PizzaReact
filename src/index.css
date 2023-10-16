@@ -56,3 +56,20 @@ body {
     width: 50px;
   height: 50px;
   }
+
+  /* Detalle */
+
+  .imgPizzaDetalle{
+    height: 500px;
+    width: 450px;
+  }
+
+  .footerDetalle{
+    /* border: 1px solid red; */
+
+  }
+
+  .CardCustom{
+    /* width: 500px; */
+    max-width: 90%;
+  }

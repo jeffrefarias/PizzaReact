@@ -1,34 +1,26 @@
-import { useState, useEffect } from 'react';
-// import { MyContext } from '../contexto/MyContext';
+import { MyContext } from '../contexto/MyContext';
+import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from '../components/Button'
+// import Boton from '../components/Button'
+import { useNavigate } from 'react-router-dom';
+
 
 const Productos = () => {
-    const [pizzas, setPizzas] = useState([]);
+    const navigate = useNavigate();
+    const { pizzas } = useContext(MyContext);
 
 
+    const PizzaDetalle = (pizzaId) => {       
+        navigate(`/ProductoDetalle/${pizzaId}`);
+    };
 
-    useEffect(() => {
-        const fetchPizzas = async () => {
-            try {
-                const response = await fetch('../../public/pizzas.json');
-                const data = await response.json();
-                setPizzas(data);
-            } catch (error) {
-                console.error("Hubo un error al obtener las pizzas:", error);
-            }
-        };
-
-        fetchPizzas();
-    }, []);
-
-    // console.log(fetchPizzas);
 
 
     return (
         <div className="container gallery pt-5">
             <div className="row">
-                {pizzas.map(pizza => (
+                
+            {pizzas.map((pizza) => (
                     <div className="col-lg-3 mb-5" key={pizza.id}>
                         <Card>
                             <Card.Img variant="top" src={pizza.img} />
@@ -49,13 +41,14 @@ const Productos = () => {
                             <Card.Footer className='text-center fs-3'>
                                 <div>$ {pizza.price}</div>
                                 <div className='d-flex justify-content-center gap-4 mt-2'>
-                                    <Button colorButton="primary" textButton="Ver Más"/>
-                                    <Button colorButton="danger" textButton="Añadir"/>                        
+                                <button className="btn bg-primary" onClick={() => PizzaDetalle(pizza.id)}>Ver más</button>
+                                    {/* <Boton colorButton="danger" textButton="Añadir" onClick={() => PizzaDetalle(pizza.id)}/> */}
                                 </div>
                             </Card.Footer>
                         </Card>
                     </div>
                 ))}
+                
             </div>
         </div>
     );

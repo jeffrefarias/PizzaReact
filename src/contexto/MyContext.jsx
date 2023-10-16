@@ -1,15 +1,31 @@
-import { createContext, useState } from 'react';
-// import Image from '../../public/pizzas.json'
+import { createContext, useState, useEffect } from 'react';
 
-export const MyContext = createContext(); 
+export const MyContext = createContext();
 
-const ImgProvider = ({children}) => {
+const PizzaProvider = ({ children }) => {
+  const [pizzas, setPizzas] = useState([]);
 
-  return(
-    <MyContext.Provider>
+  useEffect(() => {
+    const fetchPizzas = async () => {
+      try {
+        const response = await fetch('../../public/pizzas.json');
+        const data = await response.json();
+        setPizzas(data);
+        console.log(data);
+      } catch (error) {
+        console.error("Hubo un error al obtener las pizzas:", error);
+      }
+    };
+
+    fetchPizzas();
+  }, []);
+
+
+  return (
+    <MyContext.Provider value={{pizzas}}>
       {children}
     </MyContext.Provider>
   )
 }
 
-export default ImgProvider;
+export default PizzaProvider;
