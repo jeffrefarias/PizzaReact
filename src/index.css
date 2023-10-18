@@ -73,3 +73,9 @@ body {
     /* width: 500px; */
     max-width: 90%;
   }
+/* Carrito */
+
+.CuastomCarrito{
+  width: 1200px;
+  height: 700px;
+}

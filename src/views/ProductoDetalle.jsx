@@ -3,11 +3,13 @@ import { useContext } from 'react';
 import { MyContext } from '../contexto/MyContext';
 import { useNavigate } from 'react-router-dom';
 import Card from 'react-bootstrap/Card';
+import ImagenPizza from '../assets/img/pizzaali.png'
 
 
 const ProductoDetlle = () => {
     const { id } = useParams();
-    const { pizzas } = useContext(MyContext);
+    const { pizzas, addToCart } = useContext(MyContext);
+
 
     const pizzaId = pizzas.findIndex(e => e.id === id)
     const pizzaDetalle = pizzas[pizzaId];
@@ -26,22 +28,22 @@ const ProductoDetlle = () => {
                             <h1>{pizzaDetalle.name}</h1>
                         </div>
                         <hr />
-                        <div className='footerDetalle'>
+                        <div className=''>
                             <p>{pizzaDetalle.desc}</p>
                         </div>
-                        <div className='footerDetalle'><p><strong>Ingredients:</strong></p></div>
-                        <div className='footerDetalle'>
+                        <div className=''><p><strong>Ingredients:</strong></p></div>
+                        <div className=''>
                             <ul>
                                 {pizzaDetalle.ingredients.map((ingredient, index) => (
                                     <li key={index}>
-                                        <img className='pizzaIconLi' src="./src/assets/img/pizzaali.png" alt="Ingredient Icon" /> {ingredient}
+                                        <img className='pizzaIconLi' src={ImagenPizza} alt="Ingredient Icon" /> {ingredient}
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div className='d-flex justify-content-between footerDetalle'>
+                        <div className='d-flex justify-content-between '>
                             <h2>Precio: ${pizzaDetalle.price} </h2>
-                            <button className='btn btn-danger'> Añadir </button>
+                            <button className='btn btn-primary' onClick={() => addToCart(pizzaDetalle)}>Agregar</button>                          
                         </div>
                     </div>
                 </div>

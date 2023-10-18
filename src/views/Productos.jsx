@@ -1,20 +1,17 @@
 import { MyContext } from '../contexto/MyContext';
 import { useContext } from 'react';
 import Card from 'react-bootstrap/Card';
-// import Boton from '../components/Button'
+import Boton from '../components/Button'
 import { useNavigate } from 'react-router-dom';
 
 
 const Productos = () => {
     const navigate = useNavigate();
-    const { pizzas } = useContext(MyContext);
+    const { pizzas, addToCart } = useContext(MyContext);
 
-
-    const PizzaDetalle = (pizzaId) => {       
+    const PizzaDetalle = (pizzaId) => {
         navigate(`/ProductoDetalle/${pizzaId}`);
     };
-
-
 
     return (
         <div className="container gallery pt-5">
@@ -41,8 +38,9 @@ const Productos = () => {
                             <Card.Footer className='text-center fs-3'>
                                 <div>$ {pizza.price}</div>
                                 <div className='d-flex justify-content-center gap-4 mt-2'>
-                                <button className="btn bg-primary" onClick={() => PizzaDetalle(pizza.id)}>Ver más</button>
-                                    {/* <Boton colorButton="danger" textButton="Añadir" onClick={() => PizzaDetalle(pizza.id)}/> */}
+                                    <Boton colorButton="primary" textButton="Ver más" PizzaDetalle={PizzaDetalle} PizzaId={pizza.id} />
+                                    <button className='btn btn-danger' onClick={() => addToCart(pizza)}>Agregar</button>                          
+
                                 </div>
                             </Card.Footer>
                         </Card>
